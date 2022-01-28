@@ -40,36 +40,38 @@ const MovieRow = ({ movies, type }) => {
   };
 
   return (
-    <>
-      <h1 className="movie-type">{type}</h1>
-      <section className="movie-row">
-        <span className="arrow-left arr" onClick={shiftCardLeft}>
-          &lt;
-        </span>
-        <div className="slider-container" ref={cardSliderRef}>
-          <div className="card-container">
-            {movies?.map((movie) => (
-              <div key={movie.id} className="movie-container">
-                <div
-                  className="image-container"
-                  onClick={() => trailerHandler(movie)}
-                >
-                  <img
-                    src={`${imageBaseUrl}${movie.backdrop_path}`}
-                    alt={movie.title}
-                  />
+    movies && (
+      <>
+        <h1 className="movie-type">{type}</h1>
+        <section className="movie-row">
+          <span className="arrow-left arr" onClick={shiftCardLeft}>
+            &lt;
+          </span>
+          <div className="slider-container" ref={cardSliderRef}>
+            <div className="card-container">
+              {movies?.map((movie) => (
+                <div key={movie.id} className="movie-container">
+                  <div
+                    className="image-container"
+                    onClick={() => trailerHandler(movie)}
+                  >
+                    <img
+                      src={`${imageBaseUrl}${movie.backdrop_path}`}
+                      alt={movie.title}
+                    />
+                  </div>
+                  <span className="movie-title">{movie.title}</span>
                 </div>
-                <span className="movie-title">{movie.title}</span>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-        <span className="arrow-right arr" onClick={shiftCardRight}>
-          &gt;
-        </span>
-      </section>
-      {trailerId && <YouTube videoId={trailerId} opts={opts} />}
-    </>
+          <span className="arrow-right arr" onClick={shiftCardRight}>
+            &gt;
+          </span>
+        </section>
+        {trailerId && <YouTube videoId={trailerId} opts={opts} />}
+      </>
+    )
   );
 };
 

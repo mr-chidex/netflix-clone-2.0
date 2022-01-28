@@ -13,6 +13,7 @@ nav {
   left: 0;
   z-index: 1;
   transition: all 0.3s ease-in;
+  z-index: 1000;
 
   @media (min-width: 760px) {
     height: 4.5rem;

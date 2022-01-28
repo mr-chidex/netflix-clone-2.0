@@ -7,27 +7,8 @@ import { imageBaseUrl } from "../utils/api";
 import { getThriller } from "../utils/api";
 import NavBAr from "./NavBar";
 
-const Header = () => {
-  const [movie, setMovie] = useState({});
-  const [loading, setLoading] = useState(true);
+const Header = ({ movie }) => {
   const [trailerId, setTrailerId] = useState("");
-
-  const fetchaData = useCallback(async () => {
-    try {
-      const data = await axios.get(getThriller);
-
-      const movies = data.data.results;
-      const rand = Math.floor(Math.random() * movies.length);
-      setMovie(movies[rand]);
-      setLoading(false);
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchaData();
-  }, [fetchaData]);
 
   const opts = {
     height: "390",
@@ -43,7 +24,7 @@ const Header = () => {
       if (trailerId) {
         setTrailerId("");
       } else {
-        const url = await MovieTrailer(movie.title);
+        const url = await MovieTrailer(movie?.title);
         const trailerUrl = url ? url.split("=")[1] : "";
         setTrailerId(trailerUrl);
       }
@@ -56,27 +37,26 @@ const Header = () => {
     <>
       <header
         style={{
-          backgroundImage: `url(${imageBaseUrl}${movie.backdrop_path})`,
+          backgroundImage: `url(${imageBaseUrl}${movie?.backdrop_path})`,
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
         }}
       >
         <NavBAr />
-        {!loading && (
-          <div className="header-content">
-            <h1>{movie.title}</h1>
-            <div className="header-button">
-              <button onClick={() => trailerHandler(movie)}>
-                {trailerId ? "Stop Trailer" : "Play "}
-              </button>
-            </div>
 
-            <p className="description">
-              {movie.overview && movie.overview.substring(0, 300)}...
-            </p>
+        <div className="header-content">
+          <h1>{movie?.title}</h1>
+          <div className="header-button">
+            <button onClick={() => trailerHandler(movie)}>
+              {trailerId ? "Stop Trailer" : "Play "}
+            </button>
           </div>
-        )}
+
+          <p className="description">
+            {movie?.overview && movie?.overview.substring(0, 300)}...
+          </p>
+        </div>
       </header>
       {trailerId && <YouTube videoId={trailerId} opts={opts} />}
     </>

@@ -15,6 +15,7 @@ import {
   getMusic,
   getRomance,
   getScienceFiction,
+  getThriller,
 } from "../utils/api";
 
 export const getStaticProps = async () => {
@@ -28,6 +29,9 @@ export const getStaticProps = async () => {
   const { data: music } = await axios.get(getMusic);
   const { data: romance } = await axios.get(getRomance);
 
+  const { data: thriller } = await axios.get(getThriller);
+  const rand = Math.floor(Math.random() * (thriller?.results?.length || 1));
+
   return {
     props: {
       trending: trending?.results || [],
@@ -39,8 +43,9 @@ export const getStaticProps = async () => {
       anime: anime?.results || [],
       music: music?.results || [],
       romance: romance?.results || [],
+      thriller: thriller?.results[rand] || {},
     },
-    revalidate: 60,
+    revalidate: 3600,
   };
 };
 
@@ -54,17 +59,18 @@ export default function Home({
   anime,
   music,
   romance,
+  thriller,
 }) {
   return (
     <>
       <Head>
-        <title>Flix</title>
+        <title>NetFlix Clone</title>
         <meta name="description" content="netflix clone" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <>
-        <Header />
+        <Header movie={thriller} />
 
         <main className="container">
           <MovieRow movies={trending} type="Trending Movies" />
