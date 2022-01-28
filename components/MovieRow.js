@@ -6,7 +6,7 @@ import MovieTrailer from "movie-trailer";
 import { imageBaseUrl } from "../utils/api";
 
 const MovieRow = ({ movies, type }) => {
-  const [trailerId, setTrailerId] = useState("");
+  const [trailer, setTrailer] = useState({ id: "", title: "" });
   const cardSliderRef = useRef(null);
 
   const shiftCardLeft = () => {
@@ -27,12 +27,12 @@ const MovieRow = ({ movies, type }) => {
 
   const trailerHandler = async (movie) => {
     try {
-      if (trailerId) {
-        setTrailerId("");
+      if (trailer.title === movie.title) {
+        setTrailer({ id: "", title: "" });
       } else {
         const url = await MovieTrailer(movie.title);
         const trailerUrl = url ? url.split("=")[1] : "";
-        setTrailerId(trailerUrl);
+        setTrailer({ id: trailerUrl, title: movie.title });
       }
     } catch (error) {
       console.log(error);
@@ -69,7 +69,7 @@ const MovieRow = ({ movies, type }) => {
             &gt;
           </span>
         </section>
-        {trailerId && <YouTube videoId={trailerId} opts={opts} />}
+        {trailer.id && <YouTube videoId={trailer.id} opts={opts} />}
       </>
     )
   );
