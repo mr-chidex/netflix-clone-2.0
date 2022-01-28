@@ -1,0 +1,49 @@
+.nav-color {
+  background-color: #111;
+  box-shadow: 2px 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  height: 4rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  transition: all 0.3s ease-in;
+
+  @media (min-width: 760px) {
+    height: 4.5rem;
+  }
+
+  .image-container {
+    height: 4rem;
+
+    @media (min-width: 760px) {
+      height: 4.5rem;
+    }
+
+    img {
+      height: 100%;
+    }
+  }
+
+  button {
+    background-color: $red;
+    border: none;
+    outline: none;
+    color: $white;
+    display: block;
+    margin: auto 1rem;
+    padding: 0.3rem 1rem;
+    border-radius: 2px;
+    font-size: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: darken($red, 10%);
+    }
+  }
+}
