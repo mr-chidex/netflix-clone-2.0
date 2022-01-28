@@ -1,10 +1,8 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState } from "react";
 import YouTube from "react-youtube";
 import MovieTrailer from "movie-trailer";
 
-import axios from "../axios";
 import { imageBaseUrl } from "../utils/api";
-import { getThriller } from "../utils/api";
 import NavBAr from "./NavBar";
 
 const Header = ({ movie }) => {
@@ -14,7 +12,6 @@ const Header = ({ movie }) => {
     height: "390",
     width: "100%",
     playerVars: {
-      // https://developers.google.com/youtube/player_parameters
       autoplay: 1,
     },
   };

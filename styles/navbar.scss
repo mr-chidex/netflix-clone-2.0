@@ -47,4 +47,8 @@ nav {
       background-color: darken($red, 10%);
     }
   }
+
+  .signin {
+    cursor: not-allowed;
+  }
 }

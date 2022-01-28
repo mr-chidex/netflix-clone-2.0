@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 const NavBAr = () => {
   const [showNav, setShowNav] = useState(false);
@@ -24,7 +24,7 @@ const NavBAr = () => {
         <img src="/images/netflix-logo-png-2584.png" alt="Logo" />
       </div>
 
-      <button className="sigin">Sign In</button>
+      <button className="signin">Sign In</button>
     </nav>
   );
 };
