@@ -1,5 +1,14 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
+# Netflix
+
+A NETFLIX clone app with some little twick. Onclick, you can see movie trailer.
+
+## Preview
+
+<img  alt="png" src="./public/images/dexflix.png" />
+<img  alt="png" src="./public/images/dexflix2.png" />
+
 ## Getting Started
 
 First, run the development server:
